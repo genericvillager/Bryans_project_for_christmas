@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://h3fc1heqijby"]
+[gd_scene load_steps=7 format=3 uid="uid://h3fc1heqijby"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_eiay3"]
 
@@ -15,7 +15,24 @@ emission_on_uv2 = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4sue"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kbfmg"]
+bounce = 0.37
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ywrvb"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fpeif"]
+
 [node name="World" type="Node3D"]
+
+[node name="The Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.64679, 0.762668, 0, -0.762668, 0.64679, 0, 11.1127, 10)
+light_color = Color(0.475533, 0.336, 0.7, 1)
+light_energy = 6.928
+directional_shadow_split_1 = 0.225
+directional_shadow_blend_splits = true
+directional_shadow_fade_start = 1.0
+directional_shadow_max_distance = 158.6
+sky_mode = 1
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25593, 0)
@@ -36,24 +53,6 @@ tracker = &"right_hand"
 hand = 1
 motion_range = 1
 
-[node name="Light Test" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.91385)
-light_color = Color(0.886275, 0.662745, 0.14902, 1)
-light_energy = 1.97
-light_indirect_energy = 3.101
-light_volumetric_fog_energy = 2.293
-light_size = 0.137
-light_specular = 3.409
-shadow_enabled = true
-shadow_bias = 3.938
-shadow_normal_bias = 3.323
-shadow_blur = 3.828
-distance_fade_enabled = true
-distance_fade_begin = 660.61
-distance_fade_shadow = 918.85
-distance_fade_length = 589.23
-omni_range = 1.025
-
 [node name="Ground" type="MeshInstance3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, 0.5, 0, 0, 0, 100, 0, -0.25, 0)
 mesh = SubResource("BoxMesh_eiay3")
@@ -68,3 +67,16 @@ freeze = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/RigidBody3D"]
 visibility_parent = NodePath("../..")
 shape = SubResource("BoxShape3D_g4sue")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.38098, -5.69459)
+disable_mode = 2
+physics_material_override = SubResource("PhysicsMaterial_kbfmg")
+can_sleep = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_ywrvb")
+
+[node name="Testing Object" type="MeshInstance3D" parent="RigidBody3D/CollisionShape3D"]
+mesh = SubResource("BoxMesh_fpeif")
+skeleton = NodePath("../../..")
