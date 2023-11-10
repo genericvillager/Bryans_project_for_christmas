@@ -1,6 +1,7 @@
-﻿# README
+﻿
+# README
 
-Name: Seán Dunne 
+Name: Seán Dunne
 Student Number: C21310823
 Class Group: TU984/3
 
