@@ -1,9 +1,9 @@
 ﻿
 # VR Fire Spinning Experience
 
-Name: Seán Dunne,
+Name: Seán Dunne
 
-Student Number: C21310823,
+Student Number: C21310823
 
 Class Group: TU984/3
 
@@ -29,12 +29,3 @@ My idea for this assignment is to make a baton that can twirl around and is lit 
 # What I am most proud of in the assignment
 
 # What I learned
-
-```Python
-public void Start
-{
-	Input.GetAxis("jump")
-}
-```
-
-This is a table:
