@@ -1,9 +1,9 @@
 ﻿
 # README
 
-Name: Seán Dunne,
-Student Number: C21310823,
-Class Group: TU984/3
+### Name: Seán Dunne,
+### Student Number: C21310823,
+### Class Group: TU984/3
 
 ## Assignment Brief
 
