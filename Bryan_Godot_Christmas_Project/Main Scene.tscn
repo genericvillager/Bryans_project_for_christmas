@@ -55,6 +55,8 @@ hue_variation_max = 1.0
 turbulence_enabled = true
 turbulence_noise_strength = 9.54
 turbulence_noise_speed_random = 0.1
+turbulence_influence_min = 0.01
+turbulence_influence_max = 0.2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sre7u"]
 transparency = 1
