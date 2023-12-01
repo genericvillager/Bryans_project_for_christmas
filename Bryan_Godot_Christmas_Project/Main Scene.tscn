@@ -53,10 +53,8 @@ color_initial_ramp = SubResource("GradientTexture1D_6xx3v")
 hue_variation_min = -0.4
 hue_variation_max = 1.0
 turbulence_enabled = true
-turbulence_noise_speed_random = 0.05
-turbulence_influence_min = 0.05
-turbulence_influence_max = 0.8
-turbulence_initial_displacement_max = 0.4
+turbulence_noise_strength = 9.54
+turbulence_noise_speed_random = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sre7u"]
 transparency = 1
