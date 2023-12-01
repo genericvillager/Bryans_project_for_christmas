@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 project/assembly_name="Bryan Godot Christmas Project"
 
+[rendering]
+
+renderer/rendering_method.mobile="forward_plus"
+renderer/rendering_method.web="forward_plus"
+
 [xr]
 
 openxr/enabled=true
