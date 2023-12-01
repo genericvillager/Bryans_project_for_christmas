@@ -115,7 +115,7 @@ process_material = SubResource("ParticleProcessMaterial_chipm")
 draw_pass_1 = SubResource("QuadMesh_fojvo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.580746, 0, 0.814085, 0, 1, 0, -0.814085, 0, -0.580746, -1.98142, 0.619248, -5.83573)
+transform = Transform3D(-0.935241, 0, 0.354013, 0, 1, 0, -0.354013, 0, -0.935241, -1.98142, 0.619248, -5.83573)
 mesh = SubResource("BoxMesh_5qtib")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="MeshInstance3D"]
