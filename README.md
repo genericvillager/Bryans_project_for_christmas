@@ -18,8 +18,8 @@ My idea for this assignment is to make a baton that can twirl around and is lit 
 
 | Class/asset | Source |
 |-----------|-----------|
-| Place Holder | Place Holder  |
-| Place Holder  | Place Holder  |
+| XR_Interface_Turn_On | [Godot Reference](https://docs.godotengine.org/en/stable/tutorials/xr/setting_up_xr.html)  |
+| Spinny Pole  | Me  |
 | Place Holder  | Place Holder  |
 
 # References
@@ -29,3 +29,4 @@ My idea for this assignment is to make a baton that can twirl around and is lit 
 # What I am most proud of in the assignment
 
 # What I learned
+

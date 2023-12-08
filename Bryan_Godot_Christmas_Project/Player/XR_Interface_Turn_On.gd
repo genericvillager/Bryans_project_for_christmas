@@ -1,10 +1,13 @@
 extends Node3D
 
-var interface : XRInterface
+var xr_interface : XRInterface
 
-func ready() -> void:
-	interface = XRServer.find_interface("GodotXR")
+func ready():
+	xr_interface = XRServer.find_interface("GodotXR")
 	
-	if interface and interface.is_initialized():
+	if xr_interface and xr_interface.is_initialized():
 		print("VR Working")
+		
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+		
 		get_viewport().use_xr = true
