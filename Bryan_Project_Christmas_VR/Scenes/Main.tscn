@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://tyitesx3cqki"]
 
-[ext_resource type="Script" path="res://Scenes/Main.gd" id="1_1op47"]
+[ext_resource type="Script" path="res://Code/Main.gd" id="1_1op47"]
 [ext_resource type="PackedScene" uid="uid://bt5wmrg6fa5fi" path="res://Scenes/player.tscn" id="1_xnbu8"]
-[ext_resource type="PackedScene" path="res://Scenes/sky_box.tscn" id="3_qdoqn"]
+[ext_resource type="PackedScene" uid="uid://c1cnaov22a856" path="res://Scenes/sky_box.tscn" id="3_qdoqn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_os01m"]
 size = Vector3(1448.69, 0.001, 1099.76)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bt5wmrg6fa5fi"]
 
-[ext_resource type="PackedScene" path="res://Scenes/left_spinny_pole.tscn" id="1_sejxy"]
-[ext_resource type="PackedScene" path="res://Scenes/right_spinny_pole.tscn" id="2_ksb5b"]
+[ext_resource type="PackedScene" uid="uid://cbr0618a8imus" path="res://Scenes/left_spinny_pole.tscn" id="1_sejxy"]
+[ext_resource type="PackedScene" uid="uid://bhonmgqn4p6rl" path="res://Scenes/right_spinny_pole.tscn" id="2_ksb5b"]
 
 [node name="Player" type="Node3D"]
 

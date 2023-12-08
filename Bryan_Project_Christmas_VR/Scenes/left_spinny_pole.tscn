@@ -60,7 +60,7 @@ gravity_scale = 0.0
 freeze_mode = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 shape = SubResource("BoxShape3D_q3xq3")
 
 [node name="Testing Object" type="MeshInstance3D" parent="CollisionShape3D"]

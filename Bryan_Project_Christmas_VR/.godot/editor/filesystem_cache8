@@ -1,8 +1,12 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1702052293
+::res://::1702054406
 icon.svg::CompressedTexture2D::5250157394525894555::1702051525::1702051534::1::::<><>::
 openxr_action_map.tres::OpenXRActionMap::4715765458439803712::1702052290::0::1::::<><>::
-::res://Code/::1702052196
-::res://Scenes/::1702052285
-Main.tscn::PackedScene::1383653000228784332::1702052285::0::1::::<><>::
-player.tscn::PackedScene::3783298152386224218::1702052285::0::1::::<><>::
+::res://Code/::1702054393
+Main.gd::GDScript::-1::1702052713::0::1::::<>Node3D<>::
+::res://Scenes/::1702054387
+left_spinny_pole.tscn::PackedScene::4879699333903541626::1702053289::0::1::::<><>::
+Main.tscn::PackedScene::1383653000228784332::1702054216::0::1::::<><>::res://Scenes/Main.gd<>uid://bt5wmrg6fa5fi::::res://Scenes/player.tscn<>res://Scenes/sky_box.tscn
+player.tscn::PackedScene::3783298152386224218::1702054213::0::1::::<><>::res://Scenes/left_spinny_pole.tscn<>res://Scenes/right_spinny_pole.tscn
+right_spinny_pole.tscn::PackedScene::2907454968635999153::1702053297::0::1::::<><>::
+sky_box.tscn::PackedScene::6602670147419799151::1702053194::0::1::::<><>::
