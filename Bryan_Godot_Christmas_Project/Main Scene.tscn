@@ -2,39 +2,6 @@
 
 [ext_resource type="Script" path="res://Player/XR_Interface_Startup.gd" id="1_0y6rx"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wa4hu"]
-sky_top_color = Color(0.270588, 0.45098, 0.709804, 1)
-sky_horizon_color = Color(0.521569, 0.8, 0.976471, 1)
-sky_curve = 0.261165
-
-[sub_resource type="Sky" id="Sky_w7ltn"]
-sky_material = SubResource("ProceduralSkyMaterial_wa4hu")
-process_mode = 3
-
-[sub_resource type="Environment" id="Environment_cj4l5"]
-background_mode = 2
-sky = SubResource("Sky_w7ltn")
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_0g6rv"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_eiay3"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_splte"]
-diffuse_mode = 3
-albedo_color = Color(0.811765, 0.760784, 0.713726, 0.780392)
-metallic_specular = 0.0
-metallic_texture_channel = 3
-roughness = 0.35
-roughness_texture_channel = 4
-emission = Color(0.407843, 0.270588, 0, 1)
-emission_energy_multiplier = 2.26
-emission_on_uv2 = true
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_g4sue"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kbfmg"]
-bounce = 0.37
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_ywrvb"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fpeif"]
@@ -90,7 +57,39 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_fojvo"]
 material = SubResource("StandardMaterial3D_sre7u")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_jq2ck"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_5qtib"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wa4hu"]
+sky_top_color = Color(0.270588, 0.45098, 0.709804, 1)
+sky_horizon_color = Color(0.521569, 0.8, 0.976471, 1)
+sky_curve = 0.261165
+
+[sub_resource type="Sky" id="Sky_w7ltn"]
+sky_material = SubResource("ProceduralSkyMaterial_wa4hu")
+process_mode = 3
+
+[sub_resource type="Environment" id="Environment_cj4l5"]
+background_mode = 2
+sky = SubResource("Sky_w7ltn")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_0g6rv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_eiay3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_splte"]
+diffuse_mode = 3
+albedo_color = Color(0.811765, 0.760784, 0.713726, 0.780392)
+metallic_specular = 0.0
+metallic_texture_channel = 3
+roughness = 0.35
+roughness_texture_channel = 4
+emission = Color(0.407843, 0.270588, 0, 1)
+emission_energy_multiplier = 2.26
+emission_on_uv2 = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4sue"]
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_0y6rx")
@@ -101,20 +100,59 @@ light_color = Color(0.780392, 0.768627, 0.792157, 1)
 light_energy = 1.762
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
-current = true
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+cull_mask = 0
 current = true
 
 [node name="Left Hand" type="XRController3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.288266, 1.312, 0)
 tracker = &"left_hand"
-pose = &"grip"
+
+[node name="Left Spinny Pole" type="RigidBody3D" parent="XROrigin3D/Left Hand"]
+gravity_scale = 0.0
+freeze_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/Left Hand/Left Spinny Pole"]
+shape = SubResource("BoxShape3D_ywrvb")
+
+[node name="Testing Object" type="MeshInstance3D" parent="XROrigin3D/Left Hand/Left Spinny Pole/CollisionShape3D"]
+mesh = SubResource("BoxMesh_fpeif")
+skeleton = NodePath("../../../../..")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="XROrigin3D/Left Hand/Left Spinny Pole/CollisionShape3D/Testing Object"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.425853, 0)
+amount = 300
+lifetime = 0.6
+randomness = 1.0
+local_coords = true
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_chipm")
+draw_pass_1 = SubResource("QuadMesh_fojvo")
 
 [node name="Right Hand" type="XRController3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.858506, 0)
 tracker = &"right_hand"
-pose = &"grip"
+
+[node name="Right Spinny Pole" type="RigidBody3D" parent="XROrigin3D/Right Hand"]
+gravity_scale = 0.0
+freeze_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/Right Hand/Right Spinny Pole"]
+shape = SubResource("BoxShape3D_jq2ck")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/Right Hand/Right Spinny Pole/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_5qtib")
+skeleton = NodePath("../../../../..")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="XROrigin3D/Right Hand/Right Spinny Pole/CollisionShape3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 0, 0.425853, 0)
+amount = 400
+lifetime = 0.45
+randomness = 1.0
+local_coords = true
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_chipm")
+draw_pass_1 = SubResource("QuadMesh_fojvo")
 
 [node name="SkyBox" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_cj4l5")
@@ -134,40 +172,3 @@ freeze = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/RigidBody3D"]
 visibility_parent = NodePath("../..")
 shape = SubResource("BoxShape3D_g4sue")
-
-[node name="RigidBody For Testing" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.49629, -5.69459)
-disable_mode = 2
-physics_material_override = SubResource("PhysicsMaterial_kbfmg")
-can_sleep = false
-
-[node name="Left Spinny Pole" type="CollisionShape3D" parent="RigidBody For Testing"]
-shape = SubResource("BoxShape3D_ywrvb")
-
-[node name="Testing Object" type="MeshInstance3D" parent="RigidBody For Testing/Left Spinny Pole"]
-mesh = SubResource("BoxMesh_fpeif")
-skeleton = NodePath("../../..")
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="RigidBody For Testing/Left Spinny Pole/Testing Object"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.425853, 0)
-amount = 300
-lifetime = 0.6
-randomness = 1.0
-local_coords = true
-draw_order = 3
-process_material = SubResource("ParticleProcessMaterial_chipm")
-draw_pass_1 = SubResource("QuadMesh_fojvo")
-
-[node name="Right Spinny Pole" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.935241, 0, 0.354013, 0, 1, 0, -0.354013, 0, -0.935241, -1.981, 0, -5.836)
-mesh = SubResource("BoxMesh_5qtib")
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Right Spinny Pole"]
-transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 0, 0.425853, 0)
-amount = 400
-lifetime = 0.45
-randomness = 1.0
-local_coords = true
-draw_order = 3
-process_material = SubResource("ParticleProcessMaterial_chipm")
-draw_pass_1 = SubResource("QuadMesh_fojvo")

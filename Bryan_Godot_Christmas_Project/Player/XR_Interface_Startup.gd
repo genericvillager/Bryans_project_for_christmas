@@ -12,4 +12,3 @@ func ready():
 		get_viewport().use_xr = true
 	else:
 		print("VR no work")
-		
