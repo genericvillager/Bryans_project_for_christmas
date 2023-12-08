@@ -1,65 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://h3fc1heqijby"]
+[gd_scene load_steps=10 format=3 uid="uid://h3fc1heqijby"]
 
 [ext_resource type="Script" path="res://Player/XR_Interface_Startup.gd" id="1_0y6rx"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ywrvb"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_fpeif"]
-
-[sub_resource type="Gradient" id="Gradient_obigk"]
-offsets = PackedFloat32Array(0.300813, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.377494, 0.147804, 0.0138584, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_6xx3v"]
-gradient = SubResource("Gradient_obigk")
-
-[sub_resource type="Curve" id="Curve_ycm5g"]
-_data = [Vector2(0, 0.115789), 0.0, 0.0, 0, 0, Vector2(0.123377, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.336842), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_jq64g"]
-curve = SubResource("Curve_ycm5g")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_chipm"]
-direction = Vector3(0, 1, 0)
-spread = 0.0
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 0.5
-initial_velocity_max = 3.0
-angular_velocity_max = 40.0
-linear_accel_min = 1.0
-linear_accel_max = 4.0
-angle_max = 360.0
-scale_min = 0.05
-scale_max = 0.5
-scale_curve = SubResource("CurveTexture_jq64g")
-color_initial_ramp = SubResource("GradientTexture1D_6xx3v")
-hue_variation_min = -0.4
-hue_variation_max = 1.0
-turbulence_enabled = true
-turbulence_noise_strength = 9.54
-turbulence_noise_speed_random = 0.1
-turbulence_influence_min = 0.01
-turbulence_influence_max = 0.2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sre7u"]
-transparency = 1
-blend_mode = 1
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.498039, 0.141176, 0, 1)
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="QuadMesh" id="QuadMesh_fojvo"]
-material = SubResource("StandardMaterial3D_sre7u")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_jq2ck"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_5qtib"]
+[ext_resource type="PackedScene" uid="uid://b5c0gs4u8wylu" path="res://Player/Player.tscn" id="2_rm6kj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wa4hu"]
 sky_top_color = Color(0.270588, 0.45098, 0.709804, 1)
@@ -99,59 +41,7 @@ transform = Transform3D(1, 0, 0, 0, 0.999877, 0.0157073, 0, -0.0157073, 0.999877
 light_color = Color(0.780392, 0.768627, 0.792157, 1)
 light_energy = 1.762
 
-[node name="XROrigin3D" type="XROrigin3D" parent="."]
-
-[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
-cull_mask = 0
-current = true
-
-[node name="Left Hand" type="XRController3D" parent="XROrigin3D"]
-tracker = &"left_hand"
-
-[node name="Left Spinny Pole" type="RigidBody3D" parent="XROrigin3D/Left Hand"]
-gravity_scale = 0.0
-freeze_mode = 1
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/Left Hand/Left Spinny Pole"]
-shape = SubResource("BoxShape3D_ywrvb")
-
-[node name="Testing Object" type="MeshInstance3D" parent="XROrigin3D/Left Hand/Left Spinny Pole/CollisionShape3D"]
-mesh = SubResource("BoxMesh_fpeif")
-skeleton = NodePath("../../../../..")
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="XROrigin3D/Left Hand/Left Spinny Pole/CollisionShape3D/Testing Object"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.425853, 0)
-amount = 300
-lifetime = 0.6
-randomness = 1.0
-local_coords = true
-draw_order = 3
-process_material = SubResource("ParticleProcessMaterial_chipm")
-draw_pass_1 = SubResource("QuadMesh_fojvo")
-
-[node name="Right Hand" type="XRController3D" parent="XROrigin3D"]
-tracker = &"right_hand"
-
-[node name="Right Spinny Pole" type="RigidBody3D" parent="XROrigin3D/Right Hand"]
-gravity_scale = 0.0
-freeze_mode = 1
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/Right Hand/Right Spinny Pole"]
-shape = SubResource("BoxShape3D_jq2ck")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/Right Hand/Right Spinny Pole/CollisionShape3D"]
-mesh = SubResource("BoxMesh_5qtib")
-skeleton = NodePath("../../../../..")
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="XROrigin3D/Right Hand/Right Spinny Pole/CollisionShape3D/MeshInstance3D"]
-transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 0, 0.425853, 0)
-amount = 400
-lifetime = 0.45
-randomness = 1.0
-local_coords = true
-draw_order = 3
-process_material = SubResource("ParticleProcessMaterial_chipm")
-draw_pass_1 = SubResource("QuadMesh_fojvo")
+[node name="Player" parent="." instance=ExtResource("2_rm6kj")]
 
 [node name="SkyBox" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_cj4l5")
