@@ -37,11 +37,12 @@ emission_on_uv2 = true
 script = ExtResource("1_0y6rx")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.999877, 0.0157073, 0, -0.0157073, 0.999877, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.575105, 0.818079, 0, -0.818079, 0.575105, 0, 0, 0)
 light_color = Color(0.780392, 0.768627, 0.792157, 1)
 light_energy = 1.762
 
 [node name="Player" parent="." instance=ExtResource("2_rm6kj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.156405, 0)
 
 [node name="SkyBox" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_cj4l5")
