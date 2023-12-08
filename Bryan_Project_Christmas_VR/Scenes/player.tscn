@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt5wmrg6fa5fi"]
+
+[ext_resource type="PackedScene" path="res://Scenes/left_spinny_pole.tscn" id="1_sejxy"]
+[ext_resource type="PackedScene" path="res://Scenes/right_spinny_pole.tscn" id="2_ksb5b"]
+
+[node name="Player" type="Node3D"]
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+current = true
+
+[node name="Left Hand" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
+tracker = &"left_hand"
+
+[node name="Left Spinny Pole" parent="XROrigin3D/Left Hand" instance=ExtResource("1_sejxy")]
+transform = Transform3D(0.899664, 0, 0.436582, 0, 1, 0, -0.436582, 0, 0.899664, 0, 0, 0)
+
+[node name="Right Hand" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
+tracker = &"right_hand"
+
+[node name="Right Spinny Pole" parent="XROrigin3D/Right Hand" instance=ExtResource("2_ksb5b")]
+transform = Transform3D(0.627175, 0, 0.778878, 0, 1, 0, -0.778878, 0, 0.627175, 0, 0, 0)
