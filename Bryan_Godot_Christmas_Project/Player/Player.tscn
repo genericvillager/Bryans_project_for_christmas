@@ -1,20 +1,3 @@
 [gd_scene format=3 uid="uid://cn8cpvyckf6xn"]
 
 [node name="Player" type="Node3D"]
-
-[node name="XROrigin3D" type="XROrigin3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41398, 0)
-current = true
-
-[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
-current = true
-
-[node name="Left Hand" type="XRController3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.288266, 1.312, 0)
-tracker = &"left_hand"
-pose = &"grip"
-
-[node name="Right Hand" type="XRController3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.858506, 0)
-tracker = &"right_hand"
-pose = &"grip"

@@ -1,13 +1,27 @@
-[gd_scene load_steps=17 format=3 uid="uid://h3fc1heqijby"]
+[gd_scene load_steps=20 format=3 uid="uid://h3fc1heqijby"]
 
-[ext_resource type="Script" path="res://Player/XR_Interface_Turn_On.gd" id="1_flcsx"]
-[ext_resource type="PackedScene" uid="uid://cn8cpvyckf6xn" path="res://Player/Player.tscn" id="2_d2ka0"]
+[ext_resource type="Script" path="res://Player/XR_Interface_Startup.gd" id="1_0y6rx"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wa4hu"]
+sky_top_color = Color(0.270588, 0.45098, 0.709804, 1)
+sky_horizon_color = Color(0.521569, 0.8, 0.976471, 1)
+sky_curve = 0.261165
+
+[sub_resource type="Sky" id="Sky_w7ltn"]
+sky_material = SubResource("ProceduralSkyMaterial_wa4hu")
+process_mode = 3
+
+[sub_resource type="Environment" id="Environment_cj4l5"]
+background_mode = 2
+sky = SubResource("Sky_w7ltn")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_0g6rv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_eiay3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_splte"]
 diffuse_mode = 3
-albedo_color = Color(1, 0.811765, 0.713726, 0.0823529)
+albedo_color = Color(0.811765, 0.760784, 0.713726, 0.780392)
 metallic_specular = 0.0
 metallic_texture_channel = 3
 roughness = 0.35
@@ -79,13 +93,35 @@ material = SubResource("StandardMaterial3D_sre7u")
 [sub_resource type="BoxMesh" id="BoxMesh_5qtib"]
 
 [node name="World" type="Node3D"]
-script = ExtResource("1_flcsx")
+script = ExtResource("1_0y6rx")
 
-[node name="Player" parent="." instance=ExtResource("2_d2ka0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.93158, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999877, 0.0157073, 0, -0.0157073, 0.999877, 0, 0, 0)
+light_color = Color(0.780392, 0.768627, 0.792157, 1)
+light_energy = 1.762
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+current = true
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+current = true
+
+[node name="Left Hand" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.288266, 1.312, 0)
+tracker = &"left_hand"
+pose = &"grip"
+
+[node name="Right Hand" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.858506, 0)
+tracker = &"right_hand"
+pose = &"grip"
+
+[node name="SkyBox" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cj4l5")
+camera_attributes = SubResource("CameraAttributesPractical_0g6rv")
 
 [node name="Ground" type="MeshInstance3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, 0.5, 0, 0, 0, 100, 0, -0.25, 0)
+transform = Transform3D(1000, 0, 0, 0, 1, 0, 0, 0, 1000, 0, -1, 0)
 mesh = SubResource("BoxMesh_eiay3")
 surface_material_override/0 = SubResource("StandardMaterial3D_splte")
 
@@ -123,7 +159,7 @@ process_material = SubResource("ParticleProcessMaterial_chipm")
 draw_pass_1 = SubResource("QuadMesh_fojvo")
 
 [node name="Right Spinny Pole" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.935241, 0, 0.354013, 0, 1, 0, -0.354013, 0, -0.935241, -1.98142, 0.619248, -5.83573)
+transform = Transform3D(-0.935241, 0, 0.354013, 0, 1, 0, -0.354013, 0, -0.935241, -1.981, 0, -5.836)
 mesh = SubResource("BoxMesh_5qtib")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Right Spinny Pole"]
