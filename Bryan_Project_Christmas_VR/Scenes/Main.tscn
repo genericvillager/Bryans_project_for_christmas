@@ -1,8 +1,69 @@
-[gd_scene load_steps=6 format=3 uid="uid://tyitesx3cqki"]
+[gd_scene load_steps=16 format=3 uid="uid://tyitesx3cqki"]
 
 [ext_resource type="Script" path="res://Code/Main.gd" id="1_1op47"]
-[ext_resource type="PackedScene" uid="uid://bt5wmrg6fa5fi" path="res://Scenes/player.tscn" id="1_xnbu8"]
 [ext_resource type="PackedScene" uid="uid://c1cnaov22a856" path="res://Scenes/sky_box.tscn" id="3_qdoqn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74cqy"]
+albedo_color = Color(0.313726, 0.313726, 0.313726, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5nqxj"]
+material = SubResource("StandardMaterial3D_74cqy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_umsbb"]
+albedo_color = Color(0.282353, 0.333333, 0.345098, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_roujp"]
+material = SubResource("StandardMaterial3D_umsbb")
+
+[sub_resource type="Gradient" id="Gradient_mo3jm"]
+offsets = PackedFloat32Array(0.300813, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.377494, 0.147804, 0.0138584, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ktohe"]
+gradient = SubResource("Gradient_mo3jm")
+
+[sub_resource type="Curve" id="Curve_0hg2o"]
+_data = [Vector2(0, 0.115789), 0.0, 0.0, 0, 0, Vector2(0.123377, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.336842), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_qta4d"]
+curve = SubResource("Curve_0hg2o")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0m434"]
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 3.0
+angular_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 1.0
+linear_accel_max = 4.0
+scale_min = 0.5
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_qta4d")
+color_initial_ramp = SubResource("GradientTexture1D_ktohe")
+hue_variation_min = -0.4
+hue_variation_max = 1.0
+turbulence_noise_strength = 9.54
+turbulence_noise_speed_random = 0.1
+turbulence_influence_min = 0.01
+turbulence_influence_max = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s7pde"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.498039, 0.141176, 0, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_dmq7y"]
+material = SubResource("StandardMaterial3D_s7pde")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_os01m"]
 size = Vector3(1448.69, 0.001, 1099.76)
@@ -11,6 +72,90 @@ size = Vector3(1448.69, 0.001, 1099.76)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_1op47")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+current = true
+
+[node name="AudioListener3D" type="AudioListener3D" parent="XROrigin3D/XRCamera3D"]
+
+[node name="Left Hand" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
+tracker = &"left_hand"
+pose = &"aim"
+
+[node name="Left Pole" type="MeshInstance3D" parent="XROrigin3D/Left Hand"]
+transform = Transform3D(0.515, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0)
+mesh = SubResource("BoxMesh_5nqxj")
+skeleton = NodePath("../../../..")
+
+[node name="Left side Right Fire" type="MeshInstance3D" parent="XROrigin3D/Left Hand/Left Pole"]
+transform = Transform3D(0.280387, 0, 0, 0, 2.6353, 0, 0, 0, 3.33333, 0.589974, 0, 0)
+mesh = SubResource("SphereMesh_roujp")
+skeleton = NodePath("../..")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="XROrigin3D/Left Hand/Left Pole/Left side Right Fire"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+amount = 300
+randomness = 1.0
+local_coords = true
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_0m434")
+draw_pass_1 = SubResource("QuadMesh_dmq7y")
+
+[node name="Left side Left Fire" type="MeshInstance3D" parent="XROrigin3D/Left Hand/Left Pole"]
+transform = Transform3D(0.280387, 0, 0, 0, 2.6353, 0, 0, 0, 3.33333, -0.5177, 0, 0)
+mesh = SubResource("SphereMesh_roujp")
+skeleton = NodePath("../..")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="XROrigin3D/Left Hand/Left Pole/Left side Left Fire"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.3, 0, 0)
+amount = 300
+randomness = 1.0
+local_coords = true
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_0m434")
+draw_pass_1 = SubResource("QuadMesh_dmq7y")
+
+[node name="Right Hand" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
+tracker = &"right_hand"
+pose = &"aim"
+
+[node name="Right Pole" type="MeshInstance3D" parent="XROrigin3D/Right Hand"]
+transform = Transform3D(0.515, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0)
+mesh = SubResource("BoxMesh_5nqxj")
+skeleton = NodePath("../../../..")
+
+[node name="Right side Right Fire" type="MeshInstance3D" parent="XROrigin3D/Right Hand/Right Pole"]
+transform = Transform3D(0.280387, 0, 0, 0, 2.6353, 0, 0, 0, 3.33333, 0.589974, 0, 0)
+mesh = SubResource("SphereMesh_roujp")
+skeleton = NodePath("../..")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="XROrigin3D/Right Hand/Right Pole/Right side Right Fire"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+amount = 300
+randomness = 1.0
+local_coords = true
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_0m434")
+draw_pass_1 = SubResource("QuadMesh_dmq7y")
+
+[node name="Right side Left Fire" type="MeshInstance3D" parent="XROrigin3D/Right Hand/Right Pole"]
+transform = Transform3D(0.280387, 0, 0, 0, 2.6353, 0, 0, 0, 3.33333, -0.5177, 0, 0)
+mesh = SubResource("SphereMesh_roujp")
+skeleton = NodePath("../..")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="XROrigin3D/Right Hand/Right Pole/Right side Left Fire"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.3, 0, 0)
+amount = 300
+randomness = 1.0
+local_coords = true
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_0m434")
+draw_pass_1 = SubResource("QuadMesh_dmq7y")
 
 [node name="SkyBox" parent="." instance=ExtResource("3_qdoqn")]
 
@@ -31,5 +176,3 @@ shape = SubResource("BoxShape3D_os01m")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/CollisionShape3D"]
 transform = Transform3D(1000, 0, 0, 0, 1, 0, 0, 0, 1000, 0, 0, 0)
 mesh = SubResource("BoxMesh_tppaq")
-
-[node name="Player" parent="." instance=ExtResource("1_xnbu8")]

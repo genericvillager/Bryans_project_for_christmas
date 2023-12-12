@@ -1,4 +1,2 @@
 res://Scenes/Main.tscn
-res://Scenes/player.tscn
-res://Scenes/left_spinny_pole.tscn
-res://Scenes/right_spinny_pole.tscn
+res://openxr_action_map.tres

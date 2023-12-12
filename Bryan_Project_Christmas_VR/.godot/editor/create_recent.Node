@@ -1,7 +1,8 @@
+MeshInstance3D
+AudioListener3D
+RigidBody3D
 DirectionalLight3D
 XRController3D
 XRCamera3D
 XROrigin3D
-MeshInstance3D
 CollisionShape3D
-RigidBody3D
