@@ -2,6 +2,7 @@ extends Node3D
 
 var interface : XRInterface
 
+#set the viewport's use_xr to true
 func _ready():
 	interface = XRServer.find_interface("OpenXR")
 	if interface and interface.is_initialized():
