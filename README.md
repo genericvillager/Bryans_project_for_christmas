@@ -8,6 +8,7 @@ Student Number: C21310823
 Class Group: TU984/3
 
 Video:
+
 [![Submission Video](http://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
 # Assignment Brief
@@ -50,12 +51,14 @@ else:
 | Ground | Me  |
 
 Left/Right Pole Model:
+
 ![Left/Right Pole](https://imgur.com/NQUrXq0.png)
 
 # References
 * [Godot XR Reference](https://docs.godotengine.org/en/stable/tutorials/xr/setting_up_xr.html)
 * [Godot Reference](https://docs.godotengine.org/en/stable/about/introduction.html)
-* Setting up VR in Godot 4 in 4 Minutes
+* Setting up VR in Godot 4 in 4 Minutes:
+
 [![Godot VR Tutorial in 4 Minutes](http://img.youtube.com/vi/uh6bFdpnqVc/0.jpg)](https://www.youtube.com/watch?v=uh6bFdpnqVc)
 
 # What I am most proud of in the assignment
