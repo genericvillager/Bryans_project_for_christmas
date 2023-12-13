@@ -1,9 +1,10 @@
-AudioStreamPlayer3D
-MeshInstance3D
-AudioListener3D
+CollisionShape3D
 RigidBody3D
-DirectionalLight3D
+MeshInstance3D
+OpenXRHand
 XRController3D
+AudioStreamPlayer3D
+AudioListener3D
+DirectionalLight3D
 XRCamera3D
 XROrigin3D
-CollisionShape3D

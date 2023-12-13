@@ -1,0 +1,118 @@
+[gd_scene load_steps=16 format=3 uid="uid://16622gpny5kc"]
+
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_r3sw7"]
+[ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="2_oiw3u"]
+[ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="3_yslkc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cm1su"]
+margin = 0.01
+size = Vector3(0.94043, 0.0249023, 0.102783)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74cqy"]
+albedo_color = Color(0.313726, 0.313726, 0.313726, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_amys0"]
+material = SubResource("StandardMaterial3D_74cqy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_umsbb"]
+albedo_color = Color(0.282353, 0.333333, 0.345098, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_uah0l"]
+material = SubResource("StandardMaterial3D_umsbb")
+
+[sub_resource type="Gradient" id="Gradient_3lklk"]
+offsets = PackedFloat32Array(0.300813, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.377494, 0.147804, 0.0138584, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ktohe"]
+gradient = SubResource("Gradient_3lklk")
+
+[sub_resource type="Curve" id="Curve_445ow"]
+_data = [Vector2(0, 0.115789), 0.0, 0.0, 0, 0, Vector2(0.123377, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.336842), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_qta4d"]
+curve = SubResource("Curve_445ow")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y73cb"]
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 3.0
+angular_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 1.0
+linear_accel_max = 4.0
+scale_min = 0.5
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_qta4d")
+color_initial_ramp = SubResource("GradientTexture1D_ktohe")
+hue_variation_min = -0.4
+hue_variation_max = 1.0
+turbulence_noise_strength = 9.54
+turbulence_noise_speed_random = 0.1
+turbulence_influence_min = 0.01
+turbulence_influence_max = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s7pde"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.498039, 0.141176, 0, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_voxbn"]
+material = SubResource("StandardMaterial3D_s7pde")
+
+[node name="Fire Pole" instance=ExtResource("1_r3sw7")]
+release_mode = 0
+ranged_grab_method = 0
+second_hand_grab = 2
+
+[node name="CollisionShape3D" parent="." index="0"]
+shape = SubResource("BoxShape3D_cm1su")
+
+[node name="Pole" type="MeshInstance3D" parent="CollisionShape3D" index="0"]
+transform = Transform3D(1.00552, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0)
+mesh = SubResource("BoxMesh_amys0")
+skeleton = NodePath("../../..")
+
+[node name="Right Side" type="MeshInstance3D" parent="CollisionShape3D/Pole" index="0"]
+transform = Transform3D(0.247874, 0, 0, 0, 2.6353, 0, 0, 0, 3.33333, 0.589974, 0, 0)
+mesh = SubResource("SphereMesh_uah0l")
+skeleton = NodePath("../../XROrigin3D/Right Hand")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="CollisionShape3D/Pole/Right Side" index="0"]
+transform = Transform3D(-2.53243e-08, -0.579351, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4.43416, 0, 0)
+amount = 1600
+randomness = 1.0
+local_coords = true
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_y73cb")
+draw_pass_1 = SubResource("QuadMesh_voxbn")
+
+[node name="Left Side" type="MeshInstance3D" parent="CollisionShape3D/Pole" index="1"]
+transform = Transform3D(0.237312, 0, 0, 0, 2.6353, 0, 0, 0, 3.33333, -0.5177, 0, 0)
+mesh = SubResource("SphereMesh_uah0l")
+skeleton = NodePath("../../XROrigin3D/Right Hand")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="CollisionShape3D/Pole/Left Side" index="0"]
+transform = Transform3D(-2.64514e-08, 0.605137, 0, -1, -4.37114e-08, 0, 0, 0, 1, 4.56359, 0, 0)
+amount = 1600
+randomness = 1.0
+local_coords = true
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_y73cb")
+draw_pass_1 = SubResource("QuadMesh_voxbn")
+
+[node name="GrabPointHandLeft" parent="." index="1" instance=ExtResource("2_oiw3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223124, -0.0226689, -0.0961778)
+
+[node name="GrabPointHandRight" parent="." index="2" instance=ExtResource("3_yslkc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.300075, -0.0171034, -0.0982753)
