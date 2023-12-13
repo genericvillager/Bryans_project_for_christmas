@@ -60,11 +60,10 @@ transform = Transform3D(1, 0, 0, 0, 0.739936, 0.672677, 0, -0.672677, 0.739936, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.426768, -3.19862)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.78531)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.448863, 1.83419)
 shape = SubResource("BoxShape3D_jc3ty")
 
 [node name="Tabel" type="MeshInstance3D" parent="RigidBody3D/CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.332151, -0.182988)
 mesh = SubResource("BoxMesh_jeb7p")
 skeleton = NodePath("../../..")
 
