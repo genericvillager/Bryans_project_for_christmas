@@ -133,6 +133,7 @@ draw_pass_1 = SubResource("QuadMesh_dmq7y")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="XROrigin3D/Right Hand/Right Pole/Right side Left Fire"]
 transform = Transform3D(0.672543, 0, 4.1364, 0, 12.6488, 0, -9.8704, 0, 1.60484, 0, 0, 0)
 stream = ExtResource("2_edfmw")
+autoplay = true
 emission_angle_enabled = true
 emission_angle_degrees = 21.0
 doppler_tracking = 2
