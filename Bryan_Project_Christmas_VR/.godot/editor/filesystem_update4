@@ -1,2 +1,7 @@
 res://Scenes/Main.tscn
 res://Code/Main.gd
+res://Code/Rotation.gd
+res://openxr_action_map.tres
+res://Code/Rotate.gd
+res://Code/SoundController.gd
+res://default_bus_layout.tres
