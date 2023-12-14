@@ -14,7 +14,7 @@
 [sub_resource type="BoxMesh" id="BoxMesh_jeb7p"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_in62n"]
-size = Vector3(191.25, 1.22139, 94.5275)
+size = Vector3(242.864, 1.37644, 213.094)
 
 [sub_resource type="BoxMesh" id="BoxMesh_tppaq"]
 
@@ -78,7 +78,7 @@ freeze = true
 freeze_mode = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.31438, -0.621666, -23.3216)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.15944, -0.54414, -17.361)
 shape = SubResource("BoxShape3D_in62n")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/CollisionShape3D"]
