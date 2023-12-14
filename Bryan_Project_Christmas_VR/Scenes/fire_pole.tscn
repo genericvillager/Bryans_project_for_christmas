@@ -112,13 +112,15 @@ process_material = SubResource("ParticleProcessMaterial_y73cb")
 draw_pass_1 = SubResource("QuadMesh_voxbn")
 
 [node name="GrabPointHandLeft" parent="." index="1" instance=ExtResource("2_oiw3u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223124, -0.0226689, 0.00702424)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.023, 0.007)
 gizmo_extents = 0.4
+mode = 2
 snap_hand = false
 drive_aim = 1.0
 
 [node name="GrabPointHandRight" parent="." index="2" instance=ExtResource("3_yslkc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.300075, -0.0171034, -0.00109921)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.017, -0.001)
 gizmo_extents = 0.4
+mode = 1
 snap_hand = false
 drive_aim = 1.0

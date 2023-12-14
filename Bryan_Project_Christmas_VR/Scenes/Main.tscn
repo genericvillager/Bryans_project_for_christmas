@@ -56,18 +56,18 @@ mesh = SubResource("BoxMesh_mcrt2")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.739936, 0.672677, 0, -0.672677, 0.739936, 0, 0, 0)
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
+[node name="Tabel" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.426768, -3.19862)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tabel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.448863, 1.83419)
 shape = SubResource("BoxShape3D_jc3ty")
 
-[node name="Tabel" type="MeshInstance3D" parent="RigidBody3D/CollisionShape3D"]
+[node name="Tabel" type="MeshInstance3D" parent="Tabel/CollisionShape3D"]
 mesh = SubResource("BoxMesh_jeb7p")
 skeleton = NodePath("../../..")
 
-[node name="Fire Pole" parent="RigidBody3D/CollisionShape3D/Tabel" instance=ExtResource("3_p1p6n")]
+[node name="Fire Pole" parent="Tabel/CollisionShape3D/Tabel" instance=ExtResource("3_p1p6n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.612314, 0.347437)
 
 [node name="Ground" type="RigidBody3D" parent="."]
