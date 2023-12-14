@@ -35,6 +35,11 @@ point_count = 3
 curve = SubResource("Curve_445ow")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y73cb"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 3.0
+emission_ring_radius = 2.0
+emission_ring_inner_radius = 2.0
 angle_max = 360.0
 direction = Vector3(0, 1, 0)
 spread = 0.0
@@ -45,7 +50,7 @@ gravity = Vector3(0, 0, 0)
 linear_accel_min = 1.0
 linear_accel_max = 4.0
 scale_min = 0.5
-scale_max = 3.0
+scale_max = 2.0
 scale_curve = SubResource("CurveTexture_qta4d")
 color_initial_ramp = SubResource("GradientTexture1D_ktohe")
 hue_variation_min = -0.4
@@ -89,8 +94,9 @@ mesh = SubResource("SphereMesh_uah0l")
 skeleton = NodePath("../../XROrigin3D/Right Hand")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="CollisionShape3D/Pole/Right Side" index="0"]
-transform = Transform3D(-2.53243e-08, -0.579351, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4.43416, 0, 0)
-amount = 1600
+transform = Transform3D(-2.53243e-08, -0.579351, 0, 1, -4.37114e-08, 0, 0, 0, 1, -5.23329, 0, 0)
+amount = 3200
+lifetime = 1.66
 randomness = 1.0
 local_coords = true
 draw_order = 3
@@ -103,8 +109,9 @@ mesh = SubResource("SphereMesh_uah0l")
 skeleton = NodePath("../../XROrigin3D/Right Hand")
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="CollisionShape3D/Pole/Left Side" index="0"]
-transform = Transform3D(-2.64514e-08, 0.605137, 0, -1, -4.37114e-08, 0, 0, 0, 1, 4.56359, 0, 0)
-amount = 1600
+transform = Transform3D(-2.64514e-08, 0.605137, 0, -1, -4.37114e-08, 0, 0, 0, 1, 5.37798, 0, 0)
+amount = 3200
+lifetime = 1.66
 randomness = 1.0
 local_coords = true
 draw_order = 3
