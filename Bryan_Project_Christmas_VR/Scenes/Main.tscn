@@ -39,6 +39,7 @@ transform = Transform3D(0.1, 0, 0, 0, 0.02, 0, 0, 0, 0.1, 0, 0, 0)
 mesh = SubResource("BoxMesh_lvk0u")
 
 [node name="FunctionPickup" parent="XROrigin3D/Left Hand" instance=ExtResource("2_c8fp5")]
+grab_distance = 0.5
 
 [node name="Right Hand" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
@@ -50,6 +51,7 @@ transform = Transform3D(0.1, 0, 0, 0, 0.02, 0, 0, 0, 0.1, 0, 0, 0)
 mesh = SubResource("BoxMesh_mcrt2")
 
 [node name="FunctionPickup" parent="XROrigin3D/Right Hand" instance=ExtResource("2_c8fp5")]
+grab_distance = 0.5
 
 [node name="SkyBox" parent="." instance=ExtResource("3_qdoqn")]
 
